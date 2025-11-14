@@ -1,26 +1,31 @@
 <?php
 
-use Route;
-use Routeur;
-use RestReponse;
 require_once 'RestRequest.php';
 require_once 'RestReponse.php';
-
-$request = RestRequest::createRequest();
-
-$reponse = new RestReponse( ["toto","titi"], "Aucune requete recue" );
-
-$reponse->send();
-
-/*
 require_once 'Route.php';
-
 require_once 'Routeur.php';
 
-$routeur = new Routeur();
+session_start();
 
-$routeur->addRoute(new Route('/typeobjet/id/:id'));
-$routeur->addRoute(new Route('/typeobjet/all'));
-*/
+$routeur = null;
+$request = RestRequest::createRequest();
+
+if( !isset( $_SESSION['routeur']))
+{
+    $routeur = new Routeur();
+
+    $routeur->addRoute(new Route('typeobjet/id/:id', "GET"));
+    $routeur->addRoute(new Route('typeobjet/all', "GET"));
+
+    $_SESSION['routeur'] = $routeur;
+}
+else
+{
+    $routeur = $_SESSION['routeur'];
+}
+
+
+$reponse = $routeur->route($request);
+$reponse->send();
 
 ?>

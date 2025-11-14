@@ -36,7 +36,7 @@ class Route
             if( strpos( $morceauxRoute[$i], ':' ) === 0 )
             {
                 $nomParam = substr( $morceauxRoute[$i], 1 ) ;
-                $param[ $nomParam ] = $morceauxChemin[$i] ;
+                $params[ $nomParam ] = $morceauxChemin[$i] ;
             }
             else
             {
@@ -46,7 +46,7 @@ class Route
                 }
             }
         }
-        return $param ;
+        return $params ;
     }
 
     public function run($request, $params)
