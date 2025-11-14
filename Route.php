@@ -1,5 +1,6 @@
 <?php
-
+use RestReponse;
+require_once 'RestReponse.php';
 class Route
 {
     protected $chemin;
@@ -46,6 +47,15 @@ class Route
             }
         }
         return $param ;
+    }
+
+    public function run($request, $params)
+    {
+        $data = [
+            "route" => $this->chemin, 
+            "method" => $this->method, 
+            "params" => $params];
+        return new RestReponse( $data, "" );
     }
 }
 ?>
