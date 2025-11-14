@@ -16,7 +16,7 @@
 
         public function run($request, $params)
         {
-            return new RestReponse($data, "");
+            return parent::run($request, $params);
         }
     }
 ?>
