@@ -1,0 +1,35 @@
+<html>
+    <head>
+        <title>Test</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="viewport-fit=cover, width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <link href="main.css" rel="stylesheet">
+    </head>
+    <body>
+        <div>
+            <label>Requête REST</label>
+            <input id="requete" size="80">
+        </div>
+        <div>
+            <label>Parametres</label>
+            <input id="parametres" size="80">
+        </div>
+        <div>
+            <label>Méthode</label>
+            <select id="method">
+                <option value="GET">GET</option>
+                <option value="POST">POST</option>
+                <option value="PUT">PUT</option>
+                <option value="DELETE">DELETE</option>
+            </select>
+        </div>
+        <div>
+            <button id="envoyer">Envoyer</button>
+        </div>
+        <h3>Résultats</h3>
+        <div id="resultat">
+        </div>
+        <script src="Rest.js"></script>
+        <script src="index.js"></script>
+    </body>
+</html>

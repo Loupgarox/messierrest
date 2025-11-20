@@ -1,4 +1,4 @@
-<?php
+<?php 
 class Routeur
 {
     protected $routes = [];
@@ -7,22 +7,24 @@ class Routeur
     {
     }
 
-    public function addRoute($route)
+    public function addRoute( $route )
     {
-        array_push( $this->routes, $route);
+        array_push( $this->routes, $route ) ; 
     }
 
-    public function route($request)
+    public function route( $request )
     {
-        foreach( $this->routes as $route)
+        foreach( $this->routes as $route )
         {
-            $params = $route->match($request);
-            if($params !==null)
+            $params = $route->match( $request ) ;
+            if( $params !== null )
             {
-                return $route->run($request, $params);
+                return $route->run( $request, $params ) ;
             }
         }
-        return new RestReponse(null, "Aucune route ne correspond a la requete");
+        return new RestReponse( null, "Aucune route ne correspond a la requete" ) ;
     }
 }
+
+
 ?>

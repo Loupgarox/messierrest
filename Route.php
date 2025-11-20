@@ -1,36 +1,39 @@
-<?php
-use RestReponse;
-require_once 'RestReponse.php';
+<?php 
+use RestReponse ;
+require_once 'RestReponse.php' ;    
+
+
 class Route
 {
-    protected $chemin;
-    protected $method;
+    protected $chemin ;
+    protected $method ;
 
-    public function __construct($chemin, $method)
+    public function __construct( $chemin, $method)
     {
-        $this->chemin = $chemin;
-        $this->method = $method;
+        $this->chemin = $chemin ;
+        $this->method = $method ;
     }
 
-    public function match($request)
+    public function match( $request )
     {
-        if ($this->method === $request->method)
+        if( $this->method === $request->method )
         {
-            return true;
+            return $this->parse( $request->chemin ) ;
         }
-        return false;
+        return null ;
     }
 
-    public function parse($chemin)
+    public function parse( $chemin)
     {
-        $params = [];
-        $morceauxRoute = explode( '/', $this->chemin);
-        $morceauxChemin = explode( '/', $chemin);
+        $params = [] ;
+        $morceauxRoute = explode( '/', $this->chemin ) ;
+        $morceauxChemin = explode( '/', $chemin ) ;
 
-        if ( count( $morceauxRoute ) != count( $morceauxChemin ) )
+        if( count( $morceauxRoute ) != count( $morceauxChemin ) )
         {
-            return null;
+            return null ;
         }
+
         for( $i=0 ; $i < count( $morceauxRoute ) ; $i++ )
         {
             if( strpos( $morceauxRoute[$i], ':' ) === 0 )
@@ -49,13 +52,15 @@ class Route
         return $params ;
     }
 
-    public function run($request, $params)
+    public function run( $request, $params )
     {
-        $data = [
+        $data = [ 
             "route" => $this->chemin, 
             "method" => $this->method, 
-            "params" => $params];
-        return new RestReponse( $data, "" );
-    }
+            "params" => $params ] ;
+            
+        return new RestReponse( $data, "" ) ;
+    }   
+
 }
 ?>
